@@ -21,12 +21,13 @@ const App = () => {
         <Route path='/dialogs' element = {<Dialogs/>} />
         <Route path='/profile' element = {<Profile/>} /> 
         <Route path='/news' element = {<News/>} />
-        <Route path='/musik' element = {<Musik/>} />
+        <Route path='/musik2' element = {<Musik2/>} />
         <Route path='/settings' element = {<Settings/>} />
         </Routes>
         </div>
         </div>
        </BrowserRouter>
+
        );
 
 }
