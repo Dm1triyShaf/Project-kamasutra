@@ -8,6 +8,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Musik from './components/Musik/Musik';
 import Settings from './components/Settings/Settings';
+import Message from './components/Dialogs/Message/Message';
 
 
 const App = (props) => {
@@ -20,17 +21,12 @@ const App = (props) => {
       <div class= 'app-wrapper-content'>
   
       <Routes>
-         <Route path='/dialogs' element = {<Dialogs/>} />
+        <Route path='/dialogs' element = {<Dialogs dialogs={props.dialogs} messages={props.messages} />} />
         <Route path='/profile' element = {<Profile posts={props.posts}/>} /> 
         <Route path='/news' element = {<News/>} />
         <Route path='/musik' element = {<Musik/>} />
         <Route path='/settings' element = {<Settings/>} /> 
      
-        {/* <Route path='/dialogs' render = { () => <Dialogs/>} />
-        <Route path='/profile' render = { () => <Profile/>} />
-        <Route path='/news' render = { () => <News/>} />
-        <Route path='/musik' render = { () => <Musik/>} />
-        <Route path='/settings' render = { () => <Settings/>} /> */}
         </Routes>
         </div>
         </div>
