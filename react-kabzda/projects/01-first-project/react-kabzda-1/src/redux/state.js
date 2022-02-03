@@ -1,12 +1,12 @@
 
 let state = {
-    profilePage:{
+    profilePage: {
         posts: [
             {id: 1, message: 'Hi, how are you?', likesCount: 15},
             {id: 1, message: 'It\'s my first post', likesCount: 18},
           ],
         },
-    dialogsPage:{
+    dialogsPage: {
         dialogs: [
             {id: 1, name: 'Petia'},
             {id: 2, name: 'Valera'},

@@ -9,10 +9,9 @@ import News from './components/News/News';
 import Musik from './components/Musik/Musik';
 import Settings from './components/Settings/Settings';
 import Message from './components/Dialogs/Message/Message';
-
+import State from './redux/state';
 
 const App = (props) => {
-
   return (
         <div className='app-wrapper'>
       <Header />
