@@ -10,7 +10,9 @@ let postsElements =
 
    let addPost =() => {
     let text = nevPostElement.current.value;
-    alert (text);
+   props.addPost (text);
+   nevPostElement.current.value = '';
+
    }
 
     return (
