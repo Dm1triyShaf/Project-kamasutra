@@ -9,9 +9,13 @@ let postsElements =
    let nevPostElement = React.createRef();
 
    let addPost =() => {
-    let text = nevPostElement.current.value;
-   props.addPost (text);
-   nevPostElement.current.value = '';
+    props.addPost ();
+    
+   }
+   
+   let onPostChange =() => {
+   let text = nevPostElement.current.value;
+    props.updateNewPostText(text);
 
    }
 
@@ -20,7 +24,8 @@ let postsElements =
       <h3>My posts</h3>
       <div>
         <div>
-        <textarea ref={nevPostElement}></textarea>
+        <textarea onChange={onPostChange} ref={nevPostElement}
+                  value={props.newPostText}/>                              
         </div>
         <div>
         <button onClick={addPost}>Add post</button>
