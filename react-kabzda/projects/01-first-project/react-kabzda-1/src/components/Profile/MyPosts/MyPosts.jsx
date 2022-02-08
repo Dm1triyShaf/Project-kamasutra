@@ -3,38 +3,38 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-let postsElements = 
-    props.posts.map ( p => <Post message={p.message} likesCount={p.likesCount} />)
+  let postsElements =
+    props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} />)
 
-   let nevPostElement = React.createRef();
+  let nevPostElement = React.createRef();
 
-   let addPost =() => {
-    props.addPost ();
-    
-   }
-   
-   let onPostChange =() => {
-   let text = nevPostElement.current.value;
-    props.updateNewPostText(text);
+  let addPost = () => {
+    props.dispatch({ type: 'ADD-POST' });
 
-   }
+  }
 
-    return (
+  let onPostChange = () => {
+    let text = nevPostElement.current.value;
+    let action = ({ type: 'UPDATE-NEW-POST-TEXT', newText: (text) });
+    props.dispatch(action);
+  }
+
+  return (
     <div className={s.postBlock}>
       <h3>My posts</h3>
       <div>
         <div>
-        <textarea onChange={onPostChange} ref={nevPostElement}
-                  value={props.newPostText}/>                              
+          <textarea onChange={onPostChange} ref={nevPostElement}
+            value={props.newPostText} />
         </div>
         <div>
-        <button onClick={addPost}>Add post</button>
+          <button onClick={addPost}>Add post</button>
         </div>
       </div>
       <div className={s.posts}>
-      {postsElements}
+        {postsElements}
       </div>
-      </div>
+    </div>
   )
 }
 export default MyPosts;
