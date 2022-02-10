@@ -24,6 +24,7 @@ const MyPosts = (props) => {
     props.dispatch(action);
   }
 
+  
   return (
     <div className={s.postBlock}>
       <h3>My posts</h3>
