@@ -1,4 +1,6 @@
-const sibebarReduser = (state,action) => {
+let initialState = {};
+
+const sibebarReduser = (state = initialState,action) => {
     return state;
 }
 export default sibebarReduser;

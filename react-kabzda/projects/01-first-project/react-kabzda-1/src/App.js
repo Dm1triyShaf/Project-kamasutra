@@ -9,7 +9,7 @@ import News from './components/News/News';
 import Musik from './components/Musik/Musik';
 import Settings from './components/Settings/Settings';
 import Message from './components/Dialogs/Message/Message';
-import State, { addPost } from './redux/state';
+import State, { addPost } from './redux/store';
 
 const App = (props) => {
       return (
