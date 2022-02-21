@@ -27,4 +27,4 @@ const MyPostsContainer = (props) => {
     )
 }
 
-export default MyPostsContainer;1
+export default MyPostsContainer;
