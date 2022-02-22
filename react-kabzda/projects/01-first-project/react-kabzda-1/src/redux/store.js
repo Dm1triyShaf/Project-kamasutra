@@ -1,6 +1,6 @@
-import dialogsReduser from "./dialogs-reduser"
-import profileReduser from "./profile-reducer"
-import sibebarReduser from "./sibebar-reduser"
+import dialogsReducer from "./dialogs-reducer"
+import profileReducer from "./profile-reducer"
+import sidebarReducer from "./sidebar-reducer"
 
 
 
@@ -45,9 +45,9 @@ let store = {
     },
     dispatch(action) { // {type: 'ADD-POST'}
 
-        this._state.profilePage = profileReduser(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action)
-        this._state.sibebarPage = sibebarReduser(this._state.sibebarPage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebarPage = sidebarReducer(this._state.sidebarPage, action)
         this._callSubscriber(this._state);
     }
 }
