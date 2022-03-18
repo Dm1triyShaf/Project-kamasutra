@@ -3,7 +3,8 @@ import styles from './users.module.css';
 
 let Users = (props) => {
     if (props.users.length === 0) {
-        props.setUsers([{
+        props.setUsers([
+                {
                 id: 1,
                 photoUrl: 'https://s3.cdn.eg.ru/wp-content/uploads/2017/06/81350696120082256.jpg',
                 followed: false,
@@ -32,7 +33,7 @@ let Users = (props) => {
     }
 
     return <div>
-        {props.users.map(u => <div key={u.id}>
+        {props.users.map( u => <div key={u.id}>
 <span>
     <div>
         <img src={u.photoUrl} className={styles.userPhoto} />
