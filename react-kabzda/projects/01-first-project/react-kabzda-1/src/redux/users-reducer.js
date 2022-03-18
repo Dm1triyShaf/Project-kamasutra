@@ -4,14 +4,15 @@ const SET_USERS = 'SET_USERS'
 
 let initialState = {
     users: [
-        { id: 1,followed: falce, fullName: 'Grisha', status: 'Hi, how are you ?', {city: 'Minsk',country: 'Belarus'} },
-        { id: 2,followed: true, fullName: 'Vasia', status: 'Hi, how are you ?', {city: 'Moscow',country: 'Russia'} },
-        { id: 3,followed: falce, fullName: 'Petia', status: 'Hi, how are you ?', {city: 'Kiev',country: 'Ukraine'} },
+        { id: 1, photoUrl: 'https://s3.cdn.eg.ru/wp-content/uploads/2017/06/81350696120082256.jpg', followed: false, fullName: 'Grisha', status: 'Hi, how are you ?', {city: 'Minsk',country: 'Belarus'} },
+        { id: 2, photoUrl: 'https://s3.cdn.eg.ru/wp-content/uploads/2017/06/81350696120082256.jpg',followed: true, fullName: 'Vasia', status: 'Hi, how are you ?', {city: 'Moscow',country: 'Russia'} },
+        { id: 3, photoUrl: 'https://s3.cdn.eg.ru/wp-content/uploads/2017/06/81350696120082256.jpg', followed: false, fullName: 'Petia', status: 'Hi, how are you ?', {city: 'Kiev',country: 'Ukraine'} },
     ]
-};
+}
 
 
-const userReduser = (state = initialState, action) => {
+
+const usersReduser = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -36,7 +37,7 @@ const userReduser = (state = initialState, action) => {
 
             return state;
         case SET_USERS: {
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [ ...action.users]}
         }
     }
 }
@@ -44,4 +45,4 @@ const userReduser = (state = initialState, action) => {
 export const followAC = (userId) => ({type: FOLLOW, userId})
 export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users) => ({type: SET_USERS, users})
-export default userReduser;
+export default usersReduser;

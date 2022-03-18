@@ -2,8 +2,7 @@ import React from "react";
 
 let Users = (props) => {
     return <div>
-        {
-            props.users.map(u => <div key={u.id}>
+        {props.users.map(u => <div key={u.id}>
 <span>
     <div>
         <img/>
@@ -12,6 +11,7 @@ let Users = (props) => {
         <button>Follow</button>
     </div>
 </span>
+            <span>
                 <span>
                     <div>{u.fullName}</div>
                     <div>{u.status}</div>
@@ -20,10 +20,10 @@ let Users = (props) => {
                     <div>{u.location.country}</div>
                     <div>{u.location.city}</div>
                 </span>
-            </div>)
+                </span>
+        </div>)
         }
     </div>
 }
-
 
 export default Users;
