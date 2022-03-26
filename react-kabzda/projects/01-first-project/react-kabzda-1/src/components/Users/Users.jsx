@@ -4,6 +4,7 @@ import * as axios from 'axios';
 import userPhoto from '../../../src/assets/images/images.jfif';
 
 let Users = (props) => {
+    let getUsers = () =>
     if (props.users.length === 0) {
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
             props.setUsers(response.data.items);
