@@ -6,7 +6,7 @@ import userPhoto from '../../../src/assets/images/images.jfif';
 class Users extends  React.Component {
 
         componentDidMount() {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
                 this.props.setUsers(response.data.items);
             });
     }
@@ -14,14 +14,16 @@ class Users extends  React.Component {
     render() {
 
             let pagesCount = this.props.totalUsersCount / this.props.pageSize;
-
+            let pages = [];
+            for (let i=1; i <= pagesCount; i++){
+                pages.push(i);
+            }
        return <div>
            <div>
-               <span>1</span>
-               <span className={styles.selectedPage}>2</span>
-               <span>3</span>
-               <span>4</span>
-               <span>5</span>
+               {pages.map( p=> {
+                   return <span className={ this.props.currentPage === p && styles.selectedPage }>{p}
+                       onclick={ () => { this.props.setCurrentPage(p) }}>{p}</span>
+               })}
            </div>
             <button onClick = {this.getUsers}>Get Users</button>
             {this.props.users.map(u => <div key={u.id}>
