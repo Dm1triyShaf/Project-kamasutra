@@ -16,7 +16,7 @@ let Users = (props) => {
         <div>
             {pages.map(p => {
                 return <span className={props.currentPage === p && styles.selectedPage}
-                             onClick={(e) => {
+                             onClick={ () => {
                                  props.onPageChanged(p);
                              }}>{p}</span>
             })}
@@ -31,11 +31,11 @@ let Users = (props) => {
     </div>
     <div>
         {u.followed
-            ? <button onClick={() => {
+            ? <button onClick={ () => {
                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                     withCredentials: true,
                     headers: {
-                        "API_KEY": "3b03433b-cb49-410b-a161-20017b25c12f",
+                        "API-KEY": "0c3421b2-f0fc-40e8-b30f-6157d16d7c94"
                     }
                 })
                     .then(response => {
@@ -43,22 +43,19 @@ let Users = (props) => {
                             props.unfollow(u.id);
                         }
                     });
-
-            }}>Unfollow</button> :
-            <button onClick={() => {
-                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+            }}>Unfollow</button>
+            :<button onClick={() => {
+                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, { }, {
                     withCredentials: true,
                     headers: {
-                        "API_KEY": "3b03433b-cb49-410b-a161-20017b25c12f",
+                        "API-KEY": "0c3421b2-f0fc-40e8-b30f-6157d16d7c94"
                     }
                 })
                     .then(response => {
                         if (response.data.resultCode == 0) {
-                            console.log(props)
                             props.follow(u.id);
                         }
                     });
-
             }}>Follow</button>}
     </div>
 </span>
