@@ -3,6 +3,7 @@ import styles from "./users.module.css";
 import userPhoto from "../../assets/images/images.jfif";
 import {NavLink} from "react-router-dom";
 import * as axios from "axios";
+import {toggleFollowingProgress} from "../../redux/users-reducer";
 
 let Users = (props) => {
 
@@ -31,30 +32,34 @@ let Users = (props) => {
     </div>
     <div>
         {u.followed
-            ? <button onClick={ () => {
+            ? <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={ () => {
+                props.toggleFollowingProgress(true,u.id);
                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                     withCredentials: true,
                     headers: {
-                        "API-KEY": "0c3421b2-f0fc-40e8-b30f-6157d16d7c94"
+                        "API-KEY": "6a29ccf2-d6c5-449d-bcf9-03f13a3e6847"
                     }
                 })
                     .then(response => {
                         if (response.data.resultCode == 0) {
                             props.unfollow(u.id);
                         }
+                        props.toggleFollowingProgress(false,u.id);
                     });
             }}>Unfollow</button>
-            :<button onClick={() => {
+            :<button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={() => {
+                props.toggleFollowingProgress(true,u.id)
                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, { }, {
                     withCredentials: true,
                     headers: {
-                        "API-KEY": "0c3421b2-f0fc-40e8-b30f-6157d16d7c94"
+                        "API-KEY": "6a29ccf2-d6c5-449d-bcf9-03f13a3e6847"
                     }
                 })
                     .then(response => {
                         if (response.data.resultCode == 0) {
                             props.follow(u.id);
                         }
+                        props.toggleFollowingProgress(false,u.id);
                     });
             }}>Follow</button>}
     </div>
