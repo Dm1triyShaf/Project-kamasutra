@@ -3,6 +3,7 @@ import s from './Dialogs.module.css'
 import DialogItems from "./DialogItem/DialogsItem"
 import Message from "./Message/Message"
 import store, { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/dialogs-reducer'
+import {Redirect} from "react-router-dom";
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
@@ -16,7 +17,6 @@ const Dialogs = (props) => {
     let onNewMessageChange = (e) => {
         let body = e.target.value;
         props.updateNewMessageBody(body)
-
     }
 
     return (
