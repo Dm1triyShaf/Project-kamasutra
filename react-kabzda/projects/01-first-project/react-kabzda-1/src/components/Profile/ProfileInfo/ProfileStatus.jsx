@@ -9,7 +9,7 @@ class ProfileStatus extends React.Component {
 
     activateEditMode = () => {
         this.setState({
-            editMode: true
+            editMode: truel
         })
     }
     deactivateEditMode() {
