@@ -3,7 +3,9 @@ import s from './Dialogs.module.css'
 import DialogItems from "./DialogItem/DialogsItem"
 import Message from "./Message/Message"
 import { Redirect } from "react-router-dom";
-import { reduxForm, Field } from 'react-final-form'
+import { Formik,Form, Field } from "formik"
+
+
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
@@ -26,35 +28,44 @@ const Dialogs = (props) => {
                 <div>{messagesElements}</div>
 
             </div>
-            <AddMessageFormRedux onSubmit={addNewMessage} />
+            <AddMassageForm sendMessage={props.sendMessage} /> 
         </div>
     )
 }
-const addMessageForm = (props) => {
+const AddMassageForm = (props) => {
+   
+   
+    let addNewMessage = (values) => {
+       
+       props.sendMessage( values );
+       
+    }
+ 
     return (
-        <Form
-            initialValues={{
-                firstName: 'Dan'
-            }}
-            onSubmit={values => {
-                // send values to the cloud
-            }}
-            validate={values => {
-                // do validation here, and return errors object
-            }}
-            >
-                {({ handleSubmit, pristine, form, submitting }) => (
-                <form onSubmit={props.handleSubmit}>
-                    <div>
-                        <Field component="textarea" name="newMessageBody" placeholder="Enter your message" />
-                    </div>
-                    <div>
-                        <button>Send</button>
-                    </div>
-                </form>
-            )}
-                
-        </Form>
+       <Formik
+          initialValues={{
+             newMessageBody: ""
+          }}
+          onSubmit={(values, {resetForm}) => {
+             addNewMessage( values.newMessageBody );
+             resetForm( {values: ''} );
+          }
+          }
+       >
+          {() => (
+             <Form>
+                <div>
+                   <Field
+                      name={'newMessageBody'}
+                      as={'textarea'}
+                      placeholder={'enter text'}
+                   />
+                </div>
+ 
+                <button type={'submit'}>Send2</button>
+             </Form>
+          )}
+       </Formik>
     )
-}
+ }
 export default Dialogs;
