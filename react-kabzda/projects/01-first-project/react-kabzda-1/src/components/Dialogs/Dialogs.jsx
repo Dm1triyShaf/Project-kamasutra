@@ -2,13 +2,13 @@ import React from "react"
 import s from './Dialogs.module.css'
 import DialogItems from "./DialogItem/DialogsItem"
 import Message from "./Message/Message"
-import {Redirect} from "react-router-dom";
-import {Field, reduxForm} from "redux-form";
+import { Redirect } from "react-router-dom";
+import { reduxForm, Field } from 'react-final-form'
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
-    let dialogsElements = state.dialogs.map(d => <DialogItems name={d.name} id={d.id}/>);
-    let messagesElements = state.messages.map(m => <Message message={m.message}/>);
+    let dialogsElements = state.dialogs.map(d => <DialogItems name={d.name} id={d.id} />);
+    let messagesElements = state.messages.map(m => <Message message={m.message} />);
     let newMessageBody = state.newMessageBody;
 
     let addNewMessage = (values) => {
@@ -26,21 +26,35 @@ const Dialogs = (props) => {
                 <div>{messagesElements}</div>
 
             </div>
-            <AddMessageFormRedux onSubmit={addNewMessage} /> 
+            <AddMessageFormRedux onSubmit={addNewMessage} />
         </div>
     )
 }
-const AddMessageForm = (props) => {
+const addMessageForm = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component="textarea" name="newMessageBody" placeholder="Enter your message"/>
-            </div>
-            <div>
-                <button>Send</button>
-            </div>
-        </form>
+        <Form
+            initialValues={{
+                firstName: 'Dan'
+            }}
+            onSubmit={values => {
+                // send values to the cloud
+            }}
+            validate={values => {
+                // do validation here, and return errors object
+            }}
+            >
+                {({ handleSubmit, pristine, form, submitting }) => (
+                <form onSubmit={props.handleSubmit}>
+                    <div>
+                        <Field component="textarea" name="newMessageBody" placeholder="Enter your message" />
+                    </div>
+                    <div>
+                        <button>Send</button>
+                    </div>
+                </form>
+            )}
+                
+        </Form>
     )
 }
-const AddMessageFormRedux = reduxForm({form:"dialogAddMessageForm"}) (AddMessageForm);
 export default Dialogs;
